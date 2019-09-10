@@ -9,13 +9,17 @@ environment:
 
 install:
   - ps: |
+      appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
+      rustup-init.exe -y --default-host %target% --default-toolchain stable
+      $env:Path += ";$ENV:UserProfile\.cargo\bin"
       Function test() {
         param($target)
-        /usr/bin/false
+        rustup run "$target" cargo test
+        rustup run "$target" cargo test --release
       }
 
 build: false
 
 test_script:
   - ps: |
-      test
+      test "stable"
