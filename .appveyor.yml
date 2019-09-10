@@ -8,14 +8,11 @@ environment:
     #- target: i686-pc-windows-gnu
 
 install:
-  - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
-  - rustup-init -y --default-host %target% --default-toolchain stable
-  - set PATH=%PATH%;%USERPROFILE%\.cargo\bin
   - sh: echo $SHELL
   - sh: echo This is the shell! $TERM
 
 build: false
 
 test_script:
-  - rustup run "stable-%target%" cargo test
-  - rustup run "stable-%target%" cargo test --release
+  - sh: echo HELLO!
+  - sh: type echo
