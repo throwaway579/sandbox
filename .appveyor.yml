@@ -9,11 +9,10 @@ environment:
 
 install:
   - ps: |
-      Write-Host "Hello from Powershell!"
       Function test() {
-        Write-Host "Hello2"
+        param($target)
+        /usr/bin/false
       }
-      test
 
 build: false
 
