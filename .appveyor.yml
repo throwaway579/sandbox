@@ -8,11 +8,15 @@ environment:
     #- target: i686-pc-windows-gnu
 
 install:
-  - sh: echo $SHELL
-  - sh: echo This is the shell! $TERM
+  - ps: |
+      Write-Host "Hello from Powershell!"
+      Function test() {
+        Write-Host "Hello2"
+      }
+      test
 
 build: false
 
 test_script:
-  - sh: echo HELLO!
-  - sh: type echo
+  - ps: |
+      test
