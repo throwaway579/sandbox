@@ -16,10 +16,10 @@ install:
       Function testFN() {
         param([string]$target)
 
-        rustup run "$target" cargo test "$args" 2>&1 | %{ "$_" }
+        rustup run "$target" cargo test $args 2>&1 | %{ "$_" }
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
 
-        rustup run "$target" cargo test --release "$args" 2>&1 | %{ "$_" }
+        rustup run "$target" cargo test --release $args 2>&1 | %{ "$_" }
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
       }
 
