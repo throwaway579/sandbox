@@ -21,4 +21,7 @@ install:
 build: false
 
 test_script:
-  - testFN %target%
+  - echo "Target %target%"
+  - ps: Write-Host $target
+  - ps: Write-Host %target%
+  - ps: testFN %target%
