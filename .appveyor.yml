@@ -22,6 +22,7 @@ install:
 build: false
 
 test_script:
-  - ps: |
-      testFN "stable"
-      testFN "beta"
+  - ps: testFN "stable"
+  - echo Exit Code is %errorlevel%
+  - ps: testFN "beta"
+  - echo Exit Code is %errorlevel%
