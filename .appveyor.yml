@@ -26,5 +26,5 @@ install:
 build: false
 
 test_script:
-  - ps: testFN "stable"
-  - ps: testFN "beta" --feature error
+  - ps: testFN "stable" --no-default-features
+  - ps: testFN "beta" --features error
