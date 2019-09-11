@@ -8,10 +8,10 @@ environment:
     #- target: i686-pc-windows-gnu
 
 install:
+  - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
+  - rustup-init -y --default-host %target% --default-toolchain stable
+  - set PATH=%PATH%;%USERPROFILE%\.cargo\bin
   - ps: |
-      appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
-      & .\rustup-init.exe -y --default-host x86_64-pc-windows-msvc --default-toolchain stable
-      $env:Path += ";$ENV:UserProfile\.cargo\bin"
       Function test() {
         param($target)
         rustup run "$target" cargo test
@@ -21,5 +21,4 @@ install:
 build: false
 
 test_script:
-  - ps: |
-      test $target
+  - test %target%
