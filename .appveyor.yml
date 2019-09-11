@@ -15,7 +15,7 @@ install:
   - ps: |
       Function testFN() {
         param([string]$target)
-        rustup run "$target" cargo test
+        rustup run "$target" cargo test 2> $null
         if ($? -ne $true) {
           echo "Rust error; Exit code $LASTEXITCODE"
           exit $LASTEXITCODE
