@@ -12,7 +12,7 @@ install:
   - rustup-init -y --default-host %target% --default-toolchain stable
   - set PATH=%PATH%;%USERPROFILE%\.cargo\bin
   - ps: |
-      Function test() {
+      Function testFN() {
         param($target)
         rustup run "$target" cargo test
         rustup run "$target" cargo test --release
@@ -21,4 +21,4 @@ install:
 build: false
 
 test_script:
-  - test %target%
+  - testFN %target%
