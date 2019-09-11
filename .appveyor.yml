@@ -8,27 +8,17 @@ environment:
     #- target: i686-pc-windows-gnu
 
 install:
-  - appveyor-retry appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
-  - rustup-init -y --default-host %target% --default-toolchain stable
-  - set PATH=%PATH%;%USERPROFILE%\.cargo\bin
-  - rustup install beta
-  - ps: |
-      Function testFN() {
-        param([string]$target)
-        rustup run "$target" cargo test 2> $null
-        if ($? -ne $true) {
-          echo "Rust error; Exit code $LASTEXITCODE"
-          exit $LASTEXITCODE
-        }
-        rustup run "$target" cargo test --release 2> $null
-        if ($? -ne $true) {
-          echo "Rust error; Exit code $LASTEXITCODE"
-          exit $LASTEXITCODE
-        }
-      }
+  #- appveyor-retry appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
+  #- rustup-init -y --default-host %target% --default-toolchain stable
+  #- set PATH=%PATH%;%USERPROFILE%\.cargo\bin
+  #- rustup install beta
+  - cmd: |
+      :test
+      echo "This is the test function!"
+      EXIT /B 0
 
 build: false
 
 test_script:
-  - ps: testFN "stable"
-  - ps: testFN "beta"
+  - CALL :test "Hello"
+
