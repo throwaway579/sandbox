@@ -11,6 +11,7 @@ install:
   - appveyor-retry appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
   - rustup-init -y --default-host %target% --default-toolchain stable
   - set PATH=%PATH%;%USERPROFILE%\.cargo\bin
+  - rustup install beta
   - ps: |
       Function testFN() {
         param($target)
@@ -21,7 +22,6 @@ install:
 build: false
 
 test_script:
-  - echo "Target %target%"
-  - ps: Write-Host $target
-  - ps: Write-Host $env:target
-  - call testFN %target%
+  - ps: |
+      testFN "stable"
+      testFN "beta"
