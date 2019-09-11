@@ -20,7 +20,7 @@ install:
           echo "Rust error; Exit code $LASTEXITCODE"
           exit $LASTEXITCODE
         }
-        rustup run "$target" cargo test --release
+        rustup run "$target" cargo test --release 2> $null
         if ($? -ne $true) {
           echo "Rust error; Exit code $LASTEXITCODE"
           exit $LASTEXITCODE
