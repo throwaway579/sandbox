@@ -4,5 +4,5 @@ fn main() {
 
 #[test]
 fn error(){
-    main();
+    panic!();
 }
