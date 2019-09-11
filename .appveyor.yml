@@ -17,11 +17,13 @@ install:
         param([string]$target)
         rustup run "$target" cargo test
         if ($? -ne $true) {
-          echo "Rust error"
+          echo "Rust error; Exit code $LASTEXITCODE"
+          exit $LASTEXITCODE
         }
         rustup run "$target" cargo test --release
         if ($? -ne $true) {
-          echo "Rust error"
+          echo "Rust error; Exit code $LASTEXITCODE"
+          exit $LASTEXITCODE
         }
       }
 
@@ -29,6 +31,4 @@ build: false
 
 test_script:
   - ps: testFN "stable"
-  - echo Exit Code is %errorlevel%
   - ps: testFN "beta"
-  - echo Exit Code is %errorlevel%
