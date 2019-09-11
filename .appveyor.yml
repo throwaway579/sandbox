@@ -15,9 +15,9 @@ install:
   - ps: |
       Function testFN() {
         param([string]$target)
-        rustup run "$target" cargo test "$args" 2> $null
+        cmd.exe /c rustup run "$target" cargo test "$args"
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
-        rustup run "$target" cargo test --release "$args" 2> $null
+        cmd.exe /c rustup run "$target" cargo test --release "$args"
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
       }
 
