@@ -8,7 +8,7 @@ environment:
     #- target: i686-pc-windows-gnu
 
 install:
-  - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
+  - appveyor-retry appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
   - rustup-init -y --default-host %target% --default-toolchain stable
   - set PATH=%PATH%;%USERPROFILE%\.cargo\bin
   - ps: |
@@ -23,5 +23,5 @@ build: false
 test_script:
   - echo "Target %target%"
   - ps: Write-Host $target
-  - ps: Write-Host %target%
-  - ps: testFN %target%
+  - ps: Write-Host $env:target
+  - call testFN %target%
