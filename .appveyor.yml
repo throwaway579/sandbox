@@ -15,9 +15,9 @@ install:
   - ps: |
       Function testFN() {
         param([string]$target)
-        rustup run "$target" cargo test 2> $null
+        rustup run "$target" cargo test "$args" 2> $null
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
-        rustup run "$target" cargo test --release 2> $null
+        rustup run "$target" cargo test --release "$args" 2> $null
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
       }
 
@@ -25,4 +25,4 @@ build: false
 
 test_script:
   - ps: testFN "stable"
-  - ps: testFN "beta"
+  - ps: testFN "beta" --feature error
