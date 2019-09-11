@@ -14,7 +14,7 @@ install:
   - rustup install beta
   - ps: |
       Function testFN() {
-        param($target)
+        param([string]$target)
         rustup run "$target" cargo test
         rustup run "$target" cargo test --release
       }
