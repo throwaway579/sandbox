@@ -16,7 +16,13 @@ install:
       Function testFN() {
         param([string]$target)
         rustup run "$target" cargo test
+        if ($? -ne $true) {
+          echo "Rust error"
+        }
         rustup run "$target" cargo test --release
+        if ($? -ne $true) {
+          echo "Rust error"
+        }
       }
 
 build: false
