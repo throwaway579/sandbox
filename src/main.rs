@@ -5,7 +5,7 @@ fn main() {
 #[cfg(feature = "error")]
 #[test]
 fn error(){
-    println!("ok");
+    panic!();
 }
 
 #[cfg(not(feature = "error"))]
