@@ -15,11 +15,11 @@ install:
   - ps: |
       Function testFN() {
         param([string]$target)
-        echo "Executing _rustup run $target cargo test $args _"
-        cmd /c "rustup run $target cargo test $args 2>&1"
+
+        rustup run "$target" cargo test "$args" 2>&1 | %{ "$_" }
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
-        echo "Executing _rustup run $target cargo test --release $args _"
-        cmd /c "rustup run $target cargo test --release $args 2>&1"
+
+        rustup run "$target" cargo test --release "$args" 2>&1 | %{ "$_" }
         if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
       }
 
